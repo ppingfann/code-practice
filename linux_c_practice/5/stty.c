@@ -1,0 +1,245 @@
+#include<stdio.h>
+#include<termios.h>
+#include<stdlib.h>
+#include<string.h>
+
+struct termios execute_1(struct termios buff,char *av);
+struct termios execute_2(struct termios buff,char *av_1,char *av_2);
+
+int main(int argc,char *argv[])
+{
+  struct termios info;
+  struct termios buf;
+  if(argc!=2 && argc!=3){
+    printf("Usage error\n");
+    exit(1);
+    }
+  if(tcgetattr(0,&info)==-1){
+    perror("tcgetattr");
+    exit(1);
+    }
+  if(argc==2){
+    buf=execute_1(info,argv[1]);
+    tcsetattr(0,TCSANOW,&buf);
+    }
+  if(argc==3){
+    buf=execute_2(info,argv[1],argv[2]);
+    tcsetattr(0,TCSANOW,&buf);
+    }
+}
+  
+struct termios execute_1(struct termios buff,char *av)
+{
+  if(strcmp(av,"ignbrk")==0)
+    buff.c_iflag|=IGNBRK;
+  if(strcmp(av,"-ignbrk")==0)
+    buff.c_iflag&=~IGNBRK;
+  if(strcmp(av,"brkint")==0)
+    buff.c_iflag|=BRKINT;
+  if(strcmp(av,"-brkint")==0)
+    buff.c_iflag&=~BRKINT;
+  if(strcmp(av,"ignpar")==0)
+    buff.c_iflag|=IGNPAR;
+  if(strcmp(av,"-ignpar")==0)
+    buff.c_iflag&=~IGNPAR;
+  if(strcmp(av,"parmrk")==0)
+    buff.c_iflag|=PARMRK;
+  if(strcmp(av,"-parmrk")==0)
+    buff.c_iflag&=~PARMRK;
+  if(strcmp(av,"inpck")==0)
+    buff.c_iflag|=INPCK;
+  if(strcmp(av,"-inpck")==0)
+    buff.c_iflag&=~INPCK;
+  if(strcmp(av,"istrip")==0)
+    buff.c_iflag|=ISTRIP;
+  if(strcmp(av,"-istrip")==0)
+    buff.c_iflag&=~ISTRIP;
+  if(strcmp(av,"inlcr")==0)
+    buff.c_iflag|=INLCR;
+  if(strcmp(av,"-inlcr")==0)
+    buff.c_iflag&=~INLCR;
+  if(strcmp(av,"igncr")==0)
+    buff.c_iflag|=IGNCR;
+  if(strcmp(av,"-igncr")==0)
+    buff.c_iflag&=~IGNCR;
+  if(strcmp(av,"icrnl")==0)
+    buff.c_iflag|=ICRNL;
+  if(strcmp(av,"-icrnl")==0)
+    buff.c_iflag&=~ICRNL;
+  if(strcmp(av,"iuclc")==0)
+    buff.c_iflag|=IUCLC;
+  if(strcmp(av,"-iuclc")==0)
+    buff.c_iflag&=~IUCLC;
+  if(strcmp(av,"ixon")==0)
+    buff.c_iflag|=IXON;
+  if(strcmp(av,"-ixon")==0)
+    buff.c_iflag&=~IXON;
+  if(strcmp(av,"ixany")==0)
+    buff.c_iflag|=IXANY;
+  if(strcmp(av,"-ixany")==0)
+    buff.c_iflag&=~IXANY;
+  if(strcmp(av,"ixoff")==0)
+    buff.c_iflag|=IXOFF;
+  if(strcmp(av,"-ixoff")==0)
+    buff.c_iflag&=~IXOFF;
+  if(strcmp(av,"imaxbel")==0)
+    buff.c_iflag|=IMAXBEL;
+  if(strcmp(av,"-imaxbel")==0)
+    buff.c_iflag&=~IMAXBEL;
+  if(strcmp(av,"opost")==0)
+    buff.c_oflag|=OPOST;
+  if(strcmp(av,"-opost")==0)
+    buff.c_oflag&=~OPOST;
+  if(strcmp(av,"onlcr")==0)
+    buff.c_oflag|=ONLCR;
+  if(strcmp(av,"-onlcr")==0)
+    buff.c_oflag&=~ONLCR;
+  if(strcmp(av,"olcuc")==0)
+    buff.c_oflag|=OLCUC;
+  if(strcmp(av,"-olcuc")==0)
+    buff.c_oflag&=~OLCUC;
+  if(strcmp(av,"ocrnl")==0)
+    buff.c_oflag|=OCRNL;
+  if(strcmp(av,"-ocrnl")==0)
+    buff.c_oflag&=~OCRNL;
+  if(strcmp(av,"onlret")==0)
+    buff.c_oflag|=ONLRET;
+  if(strcmp(av,"-onlret")==0)
+    buff.c_oflag&=~ONLRET;
+  if(strcmp(av,"ofill")==0)
+    buff.c_oflag|=OFILL;
+  if(strcmp(av,"-ofill")==0)
+    buff.c_oflag&=~OFILL;
+  if(strcmp(av,"ofdel")==0)
+    buff.c_oflag|=OFDEL;
+  if(strcmp(av,"-ofdel")==0)
+    buff.c_oflag&=~OFDEL;
+  if(strcmp(av,"nldly")==0)
+    buff.c_oflag|=NLDLY;
+  if(strcmp(av,"-nldly")==0)
+    buff.c_oflag&=~NLDLY;
+  if(strcmp(av,"crdly")==0)
+    buff.c_oflag|=CRDLY;
+  if(strcmp(av,"-crdly")==0)
+    buff.c_oflag&=~CRDLY;
+  if(strcmp(av,"tabdly")==0)
+    buff.c_oflag|=TABDLY;
+  if(strcmp(av,"-tabdly")==0)
+    buff.c_oflag&=~TABDLY;
+  if(strcmp(av,"bsdly")==0)
+    buff.c_oflag|=BSDLY;
+  if(strcmp(av,"-bsdly")==0)
+    buff.c_oflag&=~BSDLY;
+  if(strcmp(av,"ffdly")==0)
+    buff.c_oflag|=FFDLY;
+  if(strcmp(av,"-ffdly")==0)
+    buff.c_oflag&=~FFDLY;
+  if(strcmp(av,"vtdly")==0)
+    buff.c_oflag|=VTDLY;
+  if(strcmp(av,"-vtdly")==0)
+    buff.c_oflag&=~VTDLY;
+  if(strcmp(av,"csize")==0)
+    buff.c_cflag|=CSIZE;
+  if(strcmp(av,"-csize")==0)
+    buff.c_cflag&=~CSIZE;
+  if(strcmp(av,"cstopb")==0)
+    buff.c_cflag|=CSTOPB;
+  if(strcmp(av,"-cstopb")==0)
+    buff.c_cflag&=~CSTOPB;
+  if(strcmp(av,"cread")==0)
+    buff.c_cflag|=CREAD;
+  if(strcmp(av,"-cread")==0)
+    buff.c_cflag&=~CREAD;
+  if(strcmp(av,"parenb")==0)
+    buff.c_cflag|=PARENB;
+  if(strcmp(av,"-parenb")==0)
+    buff.c_cflag&=~PARENB;
+  if(strcmp(av,"parodd")==0)
+    buff.c_cflag|=PARODD;
+  if(strcmp(av,"-parodd")==0)
+    buff.c_cflag&=~PARODD;
+  if(strcmp(av,"hupcl")==0)
+    buff.c_cflag|=HUPCL;
+  if(strcmp(av,"-hupcl")==0)
+    buff.c_cflag&=~HUPCL;
+  if(strcmp(av,"clocal")==0)
+    buff.c_cflag|=CLOCAL;
+  if(strcmp(av,"-clocal")==0)
+    buff.c_cflag&=~CLOCAL;
+  if(strcmp(av,"crtscts")==0)
+    buff.c_cflag|=CRTSCTS;
+  if(strcmp(av,"-crtscts")==0)
+    buff.c_cflag&=~CRTSCTS;
+  if(strcmp(av,"isig")==0)
+    buff.c_lflag|=ISIG;
+  if(strcmp(av,"-isig")==0)
+    buff.c_lflag&=~ISIG;
+  if(strcmp(av,"icanon")==0)
+    buff.c_lflag|=ICANON;
+  if(strcmp(av,"-icanon")==0)
+    buff.c_lflag&=~ICANON;
+  if(strcmp(av,"echoe")==0)
+    buff.c_lflag|=ECHOE;
+  if(strcmp(av,"-echoe")==0)
+    buff.c_lflag&=~ECHOE;
+  if(strcmp(av,"echok")==0)
+    buff.c_lflag|=ECHOK;
+  if(strcmp(av,"-echok")==0)
+    buff.c_lflag&=~ECHOK;
+  if(strcmp(av,"echoke")==0)
+    buff.c_lflag|=ECHOKE;
+  if(strcmp(av,"-echoke")==0)
+    buff.c_lflag&=~ECHOKE;
+  if(strcmp(av,"echoctl")==0)
+    buff.c_lflag|=ECHOCTL;
+  if(strcmp(av,"-echoctl")==0)
+    buff.c_lflag&=~ECHOCTL;
+  if(strcmp(av,"echo")==0)
+    buff.c_lflag|=ECHO;
+  if(strcmp(av,"-echo")==0)
+    buff.c_lflag&=~ECHO;
+  if(strcmp(av,"echonl")==0)
+    buff.c_lflag|=ECHONL;
+  if(strcmp(av,"-echonl")==0)
+    buff.c_lflag&=~ECHONL;
+  if(strcmp(av,"iexten")==0)
+    buff.c_lflag|=IEXTEN;
+  if(strcmp(av,"-iexten")==0)
+    buff.c_lflag&=~IEXTEN;
+  if(strcmp(av,"noflsh")==0)
+    buff.c_lflag|=NOFLSH;
+  if(strcmp(av,"-noflsh")==0)
+    buff.c_lflag&=~NOFLSH;
+  if(strcmp(av,"tostop")==0)
+    buff.c_lflag|=TOSTOP;
+  if(strcmp(av,"-tostop")==0)
+    buff.c_lflag&=~TOSTOP;
+  if(strcmp(av,"pendin")==0)
+    buff.c_lflag|=PENDIN;
+  if(strcmp(av,"-pendin")==0)
+    buff.c_lflag&=~PENDIN;
+  if(strcmp(av,"flusho")==0)
+    buff.c_lflag|=FLUSHO;
+  if(strcmp(av,"-flusho")==0)
+    buff.c_lflag&=~FLUSHO;
+  return buff;
+}
+
+struct termios execute_2(struct termios buff,char *av_1,char *av_2)
+{
+  if(strcmp(av_1,"intr")==0)
+    buff.c_cc[VINTR]=*av_2;
+  if(strcmp(av_1,"quit")==0)
+    buff.c_cc[VQUIT]=*av_2;
+  if(strcmp(av_1,"erase")==0)
+    buff.c_cc[VERASE]=*av_2;
+  if(strcmp(av_1,"kill")==0)
+    buff.c_cc[VKILL]=*av_2;
+  if(strcmp(av_1,"eof")==0)
+    buff.c_cc[VEOF]=*av_2;
+  if(strcmp(av_1,"min")==0)
+    buff.c_cc[VMIN]=*av_2;
+  if(strcmp(av_1,"eol")==0)
+    buff.c_cc[VEOL]=*av_2;
+  return buff;
+} 
