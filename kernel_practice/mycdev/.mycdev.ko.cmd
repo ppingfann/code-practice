@@ -1,0 +1,1 @@
+cmd_/home/pf/git/kernel_practice/mycdev/mycdev.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/pf/git/kernel_practice/mycdev/mycdev.ko /home/pf/git/kernel_practice/mycdev/mycdev.o /home/pf/git/kernel_practice/mycdev/mycdev.mod.o
